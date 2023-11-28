@@ -1,15 +1,17 @@
 [Unit]
-Description=Small description of the service
-After=network.target
+Description=__APP__ server
 
 [Service]
-Type=simple
+#Type=simple
 User=__APP__
 Group=__APP__
-WorkingDirectory=__INSTALL_DIR__/
-ExecStart=__INSTALL_DIR__/script
-StandardOutput=append:/var/log/__APP__/__APP__.log
-StandardError=inherit
+WorkingDirectory=__DATA_DIR__/
+
+ExecStart=__DATA_DIR__/venv/bin/gunicorn --config __DATA_DIR__/gunicorn.conf.py FastAPIAppFolder:app --worker-class uvicorn.workers.UvicornWorker
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=__APP__-server
 
 # Sandboxing options to harden security
 # Depending on specificities of your service/app, you may need to tweak these
