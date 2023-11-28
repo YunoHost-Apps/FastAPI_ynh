@@ -69,10 +69,6 @@ myynh_fix_file_permissions() {
     (
         set -x
 
-        # /var/www/$app/
-        chown -c -R "$app:www-data" "$install_dir"
-        chmod -c o-rwx "$install_dir"
-
         # /home/yunohost.app/$app/
         chown -c -R "$app:" "$data_dir"
         chmod -c o-rwx "$data_dir"
