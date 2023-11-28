@@ -1,1 +1,1 @@
-Ceci est un faux disclaimer à présenter avant l'installation
+Cette application sert à installer une application FastAPI de démonstration. Il faudra ensuite que vous y mettiez la votre

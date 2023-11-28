@@ -1,1 +1,1 @@
-Ceci est une fausse description des fonctionalités de l'app
+Cette application installe une application FastAPI "Hello world" prête à être personnalisée par votre propre code.
