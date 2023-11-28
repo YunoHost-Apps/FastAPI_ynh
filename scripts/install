@@ -65,10 +65,6 @@ ynh_script_progression --message="Create $app configuration files..."
 
 ynh_add_config --template="gunicorn.conf.py" --destination="$data_dir/gunicorn.conf.py"
 
-ynh_add_config --template="settings.py" --destination="$data_dir/settings.py"
-
-touch "$data_dir/local_settings.py"
-
 mkdir -p "$data_dir/FastAPIAppFolder"
 ynh_add_config --template="__init__.py" --destination="$data_dir/FastAPIAppFolder/__init__.py"
 
