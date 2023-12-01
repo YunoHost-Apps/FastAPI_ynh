@@ -37,8 +37,16 @@ ram.runtime = "50M"
     type = "group"
     default = "visitors"
 
+    [install.password]
+    ask.en = "Password that you will need to upload your code on YunoHost"
+    ask.fr = "Le mot de passe que vous utiliserez pour téléverser votre code sur Yunohost"
+    type = "password"
+
 [resources]
     [resources.system_user]
+    allow_sftp = true
+    allow_ssh = false
+    home = "/home/yunohost.app/__APP__"
     # This will provision/deprovision a unix system user
 
     [resources.install_dir]
@@ -46,6 +54,7 @@ ram.runtime = "50M"
     [resources.data_dir]
     # This will create/remove the data dir as /home/yunohost.app/$app
     # and store the corresponding setting $data_dir
+    dir = "/home/yunohost.app/__APP__"
 
     [resources.permissions]
     # This will configure SSOwat permission for $domain/$path/
