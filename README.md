@@ -22,7 +22,7 @@ This Application install a FastAPI application "Hello Word" ready to be customiz
 
 ## Screenshots
 
-![Screenshot of my_FastAPI_app](./doc/screenshots/example.png)
+![Screenshot of my_FastAPI_app](./doc/screenshots/screenshot.png)
 
 ## Documentation and resources
 
