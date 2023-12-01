@@ -50,11 +50,11 @@ myynh_setup_log_file
 # Use logrotate to manage application logfile(s)
 ynh_use_logrotate --logfile="$log_file" --specific_user=$app
 
-
 #=================================================
 # PYTHON VIRTUALENV
 #=================================================
 ynh_script_progression --message="Create and setup Python virtualenv..." --weight=45
+
 cp ../conf/requirements.txt "$data_dir/requirements.txt"
 myynh_setup_python_venv
 
@@ -68,25 +68,21 @@ ynh_add_config --template="gunicorn.conf.py" --destination="$data_dir/gunicorn.c
 mkdir -p "$data_dir/FastAPIAppFolder"
 ynh_add_config --template="__init__.py" --destination="$data_dir/FastAPIAppFolder/__init__.py"
 
-
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
 ynh_script_progression --message="Set file permissions..."
-myynh_fix_file_permissions
 
+myynh_fix_file_permissions
 
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring nginx web server..."
+ynh_script_progression --message="Configuring NGINX web server..."
 
-# Create a dedicated nginx config
-# https://yunohost.org/en/contribute/packaging_apps/helpers
-# https://github.com/YunoHost/yunohost/blob/dev/helpers/nginx
-ynh_add_nginx_config "public_path" "port"
+ynh_add_nginx_config
 
 #=================================================
 # SETUP SYSTEMD
@@ -100,8 +96,7 @@ ynh_add_systemd_config --service=$app --template="systemd.service"
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..."
 
-yunohost service add $app
-
+yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
 
 #=================================================
 # Start the app server via systemd
@@ -109,7 +104,6 @@ yunohost service add $app
 ynh_script_progression --message="Starting systemd service '$app'..." --weight=5
 
 ynh_systemd_action --service_name=$app --action="start" --log_path="$log_file"
-
 
 #=================================================
 # END OF SCRIPT

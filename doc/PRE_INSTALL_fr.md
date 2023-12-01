@@ -1,1 +1,0 @@
-Cette application sert à installer une application FastAPI de démonstration. Il faudra ensuite que vous y mettiez la votre
