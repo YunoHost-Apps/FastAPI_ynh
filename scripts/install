@@ -55,7 +55,8 @@ ynh_use_logrotate --logfile="$log_file" --specific_user=$app
 #=================================================
 ynh_script_progression --message="Create and setup Python virtualenv..." --weight=45
 
-cp ../conf/requirements.txt "$data_dir/requirements.txt"
+ynh_add_config --template="requirements.txt" --destination="$data_dir/requirements.txt"
+
 myynh_setup_python_venv
 
 #=================================================
@@ -84,17 +85,7 @@ ynh_script_progression --message="Configuring NGINX web server..."
 
 ynh_add_nginx_config
 
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Configuring systemd service '$app'..." --weight=5
-
-ynh_add_systemd_config --service=$app --template="systemd.service"
-
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-ynh_script_progression --message="Integrating service in YunoHost..."
+ynh_add_systemd_config
 
 yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
 
