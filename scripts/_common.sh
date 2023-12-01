@@ -22,8 +22,8 @@ log_level="WARNING"
 # SET CONSTANTS
 #=================================================
 
-# e.g.: point pip cache to: /home/yunohost.app/$app/.cache/
-XDG_CACHE_HOME="$data_dir/.cache/"
+# e.g.: point pip cache to: /var/www/$app/.cache/
+XDG_CACHE_HOME="$install_dir/.cache/"
 
 log_path=/var/log/$app
 log_file="${log_path}/${app}.log"
@@ -34,22 +34,23 @@ log_file="${log_path}/${app}.log"
 
 myynh_setup_python_venv() {
     # Always recreate everything fresh with current python version
-    ynh_secure_remove "$data_dir/venv"
+    ynh_secure_remove "$install_dir/venv"
 
     # Skip pip because of: https://github.com/YunoHost/issues/issues/1960
-    python3 -m venv --without-pip "$data_dir/venv"
+    python3 -m venv --without-pip "$install_dir/venv"
 
-    chown -c -R "$app:" "$data_dir"
+    chown -c -R "$app:" "$install_dir"
 
     # run source in a 'sub shell'
     (
         set +o nounset
-        source "$data_dir/venv/bin/activate"
+        source "$install_dir/venv/bin/activate"
         set -o nounset
         set -x
-        ynh_exec_as $app $data_dir/venv/bin/python3 -m ensurepip
-        ynh_exec_as $app $data_dir/venv/bin/pip3 install --upgrade wheel pip setuptools
-        ynh_exec_as $app $data_dir/venv/bin/pip3 install -r "$data_dir/requirements.txt"
+        ynh_exec_as $app $install_dir/venv/bin/python3 -m ensurepip
+        # using --no-cache-dir option because user doesn't have permission to write on cache directory (don't know if it's on purpose or not)
+        ynh_exec_as $app $install_dir/venv/bin/pip3 install --no-cache-dir --upgrade wheel pip setuptools
+        ynh_exec_as $app $install_dir/venv/bin/pip3 install --no-cache-dir -r "$install_dir/requirements.txt"
     )
 }
 
@@ -72,5 +73,9 @@ myynh_fix_file_permissions() {
         # /home/yunohost.app/$app/
         chown -c -R "$app:" "$data_dir"
         chmod -c o-rwx "$data_dir"
+
+        # /var/www/$app/
+        chown -c -R "$app:" "$install_dir"
+        chmod -c o-rwx "$install_dir"
     )
 }
