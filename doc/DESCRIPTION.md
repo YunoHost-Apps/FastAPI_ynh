@@ -1,1 +1,1 @@
-This is a dummy description of this app features
+This Application install a FastAPI application "Hello Word" ready to be customized by your own code

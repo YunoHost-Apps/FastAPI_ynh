@@ -1,7 +1,4 @@
-This is a dummy disclaimer to display after the install
+Congrats, the application is installed.
+You can now put your FastAPI application's code in the folder `__DATA_DIR__`
 
-The app url is `__DOMAIN____PATH__`
-
-The app install dir is `__INSTALL_DIR__`
-
-The app id is `__ID__`
+Your application must contain a __init__.py file and the FastAPI object must be named 'app'

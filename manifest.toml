@@ -12,14 +12,13 @@ version = "1.0~ynh1"
 maintainers = ["leonarf"]
 
 [upstream]
-license = "AGPL-3.0-or-later"
+license = "GPL-3.0-or-later"
 code = "https://github.com/leonarf/FastAPI_ynh"
 
 [integration]
 yunohost = ">= 11.2.5"
-# FIXME: can be replaced by a list of supported archs using the dpkg --print-architecture nomenclature (amd64/i386/armhf/arm64), for example: ["amd64", "i386"]
 architectures = "all"
-multi_instance = false
+multi_instance = true
 ldap = "not_relevant"
 sso = "not_relevant"
 disk = "50M"

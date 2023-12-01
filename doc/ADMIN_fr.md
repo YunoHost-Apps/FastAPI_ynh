@@ -1,3 +1,3 @@
-Ceci est une fausse doc d'admin pour cette app
+Pour personnaliser l'application FastAPI, il faut mettre votre code dans `__DATA_DIR__`
 
-Le dossier d'install de l'app est `__INSTALL_DIR__`
+Votre code doit contenir un fichier __init__.py et l'objet FastAPI doit s'appeler 'app'
