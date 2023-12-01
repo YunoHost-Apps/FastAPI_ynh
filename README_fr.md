@@ -22,7 +22,7 @@ Cette application installe une application FastAPI "Hello world" prête à être
 
 ## Captures d’écran
 
-![Capture d’écran de my_FastAPI_app](./doc/screenshots/example.png)
+![Capture d’écran de my_FastAPI_app](./doc/screenshots/screenshot.png)
 
 ## Documentations et ressources
 
