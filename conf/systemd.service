@@ -7,7 +7,7 @@ User=__APP__
 Group=__APP__
 WorkingDirectory=__DATA_DIR__/
 
-ExecStart=__DATA_DIR__/venv/bin/gunicorn --config __DATA_DIR__/gunicorn.conf.py FastAPIAppFolder:app --worker-class uvicorn.workers.UvicornWorker
+ExecStart=__INSTALL_DIR__/venv/bin/gunicorn --config __INSTALL_DIR__/gunicorn.conf.py FastAPIAppFolder:app --worker-class uvicorn.workers.UvicornWorker
 
 StandardOutput=syslog
 StandardError=syslog

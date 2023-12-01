@@ -55,7 +55,7 @@ ynh_use_logrotate --logfile="$log_file" --specific_user=$app
 #=================================================
 ynh_script_progression --message="Create and setup Python virtualenv..." --weight=45
 
-ynh_add_config --template="requirements.txt" --destination="$data_dir/requirements.txt"
+ynh_add_config --template="requirements.txt" --destination="$install_dir/requirements.txt"
 
 myynh_setup_python_venv
 
@@ -64,7 +64,7 @@ myynh_setup_python_venv
 # ================================================
 ynh_script_progression --message="Create $app configuration files..."
 
-ynh_add_config --template="gunicorn.conf.py" --destination="$data_dir/gunicorn.conf.py"
+ynh_add_config --template="gunicorn.conf.py" --destination="$install_dir/gunicorn.conf.py"
 
 mkdir -p "$data_dir/FastAPIAppFolder"
 ynh_add_config --template="__init__.py" --destination="$data_dir/FastAPIAppFolder/__init__.py"
