@@ -19,20 +19,48 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=1
 ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
 
 #=================================================
-# "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN NPM BUILD...)
+# SETUP SYSTEMD
 #=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
+ynh_script_progression --message="Configuring systemd service '$app'..." --weight=5
+
+ynh_add_systemd_config --service=$app --template="systemd.service"
+
 #=================================================
+# PYTHON VIRTUALENV
+#=================================================
+ynh_script_progression --message="Create and setup Python virtualenv..." --weight=45
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_script_progression --message="Upgrading source files..." --weight=1
+ynh_add_config --template="requirements.txt" --destination="$install_dir/requirements.txt"
 
-	# Download, check integrity, uncompress and patch the source from manifest.toml
-	ynh_setup_source --dest_dir="$install_dir"
-fi
+myynh_setup_python_venv
 
-chown -R $app:www-data "$install_dir"
+#=================================================
+# copy config files
+# ================================================
+ynh_script_progression --message="Create $app configuration files..."
+
+ynh_add_config --template="gunicorn.conf.py" --destination="$install_dir/gunicorn.conf.py"
+
+mkdir -p "$data_dir/FastAPIAppFolder"
+ynh_add_config --template="__init__.py" --destination="$data_dir/FastAPIAppFolder/__init__.py"
+
+# Add the password to this user
+chpasswd <<< "${app}:${password}"
+
+#=================================================
+# SETUP LOGROTATE
+#=================================================
+ynh_script_progression --message="Upgrading logrotate configuration..."
+
+# Use logrotate to manage app-specific logfile(s)
+ynh_use_logrotate --logfile="$log_file" --specific_user=$app --non-append
+
+#=================================================
+# SECURE FILES AND DIRECTORIES
+#=================================================
+ynh_script_progression --message="Set file permissions..."
+myynh_fix_file_permissions
+
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -44,18 +72,6 @@ ynh_add_nginx_config
 ynh_add_systemd_config
 
 yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
-
-#=================================================
-# RECONFIGURE THE APP (UPDATE CONF, APPLY MIGRATIONS...)
-#=================================================
-# UPDATE A CONFIG FILE
-#=================================================
-#ynh_script_progression --message="Updating a configuration file..." --weight=1
-
-#ynh_add_config --template="some_config_file" --destination="$install_dir/some_config_file"
-
-#chmod 400 "$install_dir/some_config_file"
-#chown $app:$app "$install_dir/some_config_file"
 
 #=================================================
 # START SYSTEMD SERVICE
