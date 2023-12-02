@@ -11,13 +11,19 @@ source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# RESTORE THE NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Restoring the NGINX web server configuration..." --weight=1
+
+ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
+ynh_systemd_action --service_name="nginx" --action="reload"
+
+#=================================================
 # RESTORE THE APP MAIN DIR
 #=================================================
 ynh_script_progression --message="Restoring the app main directory..." --weight=1
 
 ynh_restore_file --origin_path="$install_dir"
-
-chown -R $app:www-data "$install_dir"
 
 #=================================================
 # RESTORE THE DATA DIRECTORY
@@ -26,36 +32,40 @@ ynh_script_progression --message="Restoring the data directory..." --weight=1
 
 ynh_restore_file --origin_path="$data_dir" --not_mandatory
 
-# (Same as for install dir)
-chown -R $app:www-data "$data_dir"
+ynh_script_progression --message="Set file permissions..."
+myynh_fix_file_permissions
 
 #=================================================
-# RESTORE SYSTEM CONFIGURATIONS
+# PYTHON VIRTUALENV
+# Maybe the backup contains a other Python version
 #=================================================
-# RESTORE THE PHP-FPM CONFIGURATION
-#=================================================
-ynh_script_progression --message="Restoring system configurations related to $app..." --weight=1
+ynh_script_progression --message="Create and setup Python virtualenv..." --weight=45
 
-ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
+myynh_setup_python_venv
+
+#=================================================
+# RESTORE SYSTEMD
+#=================================================
+ynh_script_progression --message="Restoring the systemd $app configuration..."
 
 ynh_restore_file --origin_path="/etc/systemd/system/$app.service"
 systemctl enable $app.service --quiet
+ynh_systemd_action --service_name=$app --action="start" --log_path="$log_file"
 
-yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
+#=================================================
+# INTEGRATE SERVICE IN YUNOHOST
+#=================================================
+ynh_script_progression --message="Integrating service in YunoHost..."
 
+yunohost service add $app
+
+#=================================================
+# RESTORE THE LOGROTATE CONFIGURATION
+#=================================================
+ynh_script_progression --message="Setup logging..."
+
+myynh_setup_log_file
 ynh_restore_file --origin_path="/etc/logrotate.d/$app"
-
-#=================================================
-# GENERIC FINALIZATION
-#=================================================
-# RELOAD NGINX AND PHP-FPM OR THE APP SERVICE
-#=================================================
-ynh_script_progression --message="Reloading NGINX web server and $app's service..." --weight=1
-
-# Typically you only have either $app or php-fpm but not both at the same time...
-ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
-
-ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
