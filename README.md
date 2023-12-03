@@ -5,9 +5,9 @@ It shall NOT be edited by hand.
 
 # my_FastAPI_app for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/my_fastapi_app.svg)](https://dash.yunohost.org/appci/app/my_fastapi_app) ![Working status](https://ci-apps.yunohost.org/ci/badges/my_fastapi_app.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/my_fastapi_app.maintain.svg)
+[![Integration level](https://dash.yunohost.org/integration/fastapi.svg)](https://dash.yunohost.org/appci/app/fastapi) ![Working status](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
 
-[![Install my_FastAPI_app with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=my_fastapi_app)
+[![Install my_FastAPI_app with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=fastapi)
 
 *[Lire ce readme en français.](./README_fr.md)*
 
@@ -27,19 +27,19 @@ This Application install a FastAPI application "Hello Word" ready to be customiz
 ## Documentation and resources
 
 * Upstream app code repository: <https://github.com/leonarf/FastAPI_ynh>
-* YunoHost Store: <https://apps.yunohost.org/app/my_fastapi_app>
-* Report a bug: <https://github.com/YunoHost-Apps/my_fastapi_app_ynh/issues>
+* YunoHost Store: <https://apps.yunohost.org/app/fastapi>
+* Report a bug: <https://github.com/YunoHost-Apps/fastapi_ynh/issues>
 
 ## Developer info
 
-Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/my_fastapi_app_ynh/tree/testing).
+Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/fastapi_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
 
 ``` bash
-sudo yunohost app install https://github.com/YunoHost-Apps/my_fastapi_app_ynh/tree/testing --debug
+sudo yunohost app install https://github.com/YunoHost-Apps/fastapi_ynh/tree/testing --debug
 or
-sudo yunohost app upgrade my_fastapi_app -u https://github.com/YunoHost-Apps/my_fastapi_app_ynh/tree/testing --debug
+sudo yunohost app upgrade fastapi -u https://github.com/YunoHost-Apps/fastapi_ynh/tree/testing --debug
 ```
 
 **More info regarding app packaging:** <https://yunohost.org/packaging_apps>
