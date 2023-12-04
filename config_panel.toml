@@ -1,0 +1,18 @@
+version = "1.0"
+
+[main]
+name.en = "Information about your app's code"
+name.fr = "Information à propos de votre propre code"
+
+    [main.custom_main_folder]
+    ask = "Name of your app's main folder"
+    type = "string"
+    default = "FastAPIAppFolder"
+    help = "It's the folder containing the object 'app' in __init__.py"
+
+    [main.custom_requirements]
+    ask = "Do you have a custom requirement.txt"
+    type = "boolean"
+    optional = true
+    help = "Check it if you want my_FastAPI_app to install your custom python dependencies."
+    bind = "install_custom_requirements()"
