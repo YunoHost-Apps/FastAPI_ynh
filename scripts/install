@@ -46,6 +46,8 @@ ynh_add_config --template="gunicorn.conf.py" --destination="$install_dir/gunicor
 
 mkdir -p "$data_dir/FastAPIAppFolder"
 ynh_add_config --template="__init__.py" --destination="$data_dir/FastAPIAppFolder/__init__.py"
+ynh_app_setting_set --app=$app --key=main_folder --value="FastAPIAppFolder"
+ynh_app_setting_set --app=$app --key=requirements --value=0
 
 # Add the password to this user
 chpasswd <<< "${app}:${password}"
@@ -68,7 +70,7 @@ ynh_add_nginx_config
 
 ynh_add_systemd_config
 
-yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Gunicorn running a FastAPI app" --log="/var/log/$app/$app.log"
 
 #=================================================
 # Start the app server via systemd

@@ -28,7 +28,7 @@ data_dir=$(ynh_app_setting_get --app=$app --key=data_dir)
 #=================================================
 # SPECIFIC ACTION FOR TOML SHORT KEY
 #=================================================
-install_custom_requirements() {
+setter__requirements() {
     #Enable python virtual environnement
     source $install_dir/bin/activate
 

@@ -38,8 +38,8 @@ ram.runtime = "50M"
     default = "visitors"
 
     [install.password]
-    ask.en = "Password that you will need to upload your code on YunoHost"
-    ask.fr = "Le mot de passe que vous utiliserez pour téléverser votre code sur Yunohost"
+    help.en = "Password that you will need to upload your code on YunoHost"
+    help.fr = "Le mot de passe que vous utiliserez pour téléverser votre code sur Yunohost"
     type = "password"
 
 [resources]
