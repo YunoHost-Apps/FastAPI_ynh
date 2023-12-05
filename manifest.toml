@@ -45,7 +45,7 @@ ram.runtime = "50M"
 [resources]
     [resources.system_user]
     allow_sftp = true
-    allow_ssh = false
+    allow_ssh = true
     home = "/home/yunohost.app/__APP__"
     # This will provision/deprovision a unix system user
 
