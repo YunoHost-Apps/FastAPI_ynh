@@ -45,6 +45,9 @@ ynh_app_config_apply() {
         chpasswd <<< "${app}:${password}"
     fi
 
+    ynh_script_progression --message="Stopping a systemd service..." --weight=1
+    ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
+
     # Symbolic link to main app folder
     if [ ! "$main_folder" == "FastAPIAppFolder" ]
     then
@@ -54,15 +57,18 @@ ynh_app_config_apply() {
         ln -s "$data_dir/$main_folder" "$data_dir/FastAPIAppFolder"
     fi
 
-    if [ $requirements == 1 ]
+    if [ ! "$requirements_path" == "" ]
     then
         ynh_print_info --message="Installing python custom requirements"
         # Enable python virtual environnement
         source $install_dir/venv/bin/activate
 
         # Install user's custom requirements
-        pip install -r $data_dir/requirements.txt
+        pip install -r $data_dir/$requirements_path
     fi
+
+    ynh_script_progression --message="Starting a systemd service..." --weight=1
+    ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
 }
 
 ynh_app_config_run $1
