@@ -7,6 +7,9 @@ User=__APP__
 Group=__APP__
 WorkingDirectory=__DATA_DIR__/
 
+# UVICORN_ROOT_PATH is used by FastAPI to serve the 'docs' page correctly
+Environment="UVICORN_ROOT_PATH=__PATH__"
+
 ExecStart=__INSTALL_DIR__/venv/bin/gunicorn --config __INSTALL_DIR__/gunicorn.conf.py FastAPIAppFolder:app --worker-class uvicorn.workers.UvicornWorker
 
 StandardOutput=syslog

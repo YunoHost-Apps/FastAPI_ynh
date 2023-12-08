@@ -1,9 +1,12 @@
+import os
 from typing import Union
 
 from fastapi import FastAPI
 
-app = FastAPI(root_path="__PATH__")
+UVICORN_ROOT_PATH = os.environ.get('UVICORN_ROOT_PATH')
 
+#app = FastAPI(root_path=UVICORN_ROOT_PATH)
+app = FastAPI()
 
 @app.get("/")
 def read_root():

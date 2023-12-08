@@ -47,7 +47,7 @@ ynh_add_config --template="gunicorn.conf.py" --destination="$install_dir/gunicor
 mkdir -p "$data_dir/FastAPIAppFolder"
 ynh_add_config --template="__init__.py" --destination="$data_dir/FastAPIAppFolder/__init__.py"
 ynh_app_setting_set --app=$app --key=main_folder --value="FastAPIAppFolder"
-ynh_app_setting_set --app=$app --key=requirements --value=0
+ynh_app_setting_set --app=$app --key=requirements_path --value=""
 
 # Add the password to this user
 chpasswd <<< "${app}:${password}"
