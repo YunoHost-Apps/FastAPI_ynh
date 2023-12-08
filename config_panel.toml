@@ -7,12 +7,12 @@ name.fr = "Information à propos de votre propre code"
     [main.custom_code]
         [main.custom_code.main_folder]
         ask = "Name of your app's main folder"
-        type = "string"
+        type = "path"
         default = "FastAPIAppFolder"
         help = "It's the folder containing the object 'app' in __init__.py"
 
-        [main.custom_code.requirements]
-        ask = "Do you have a custom requirement.txt"
-        type = "boolean"
+        [main.custom_code.requirements_path]
+        ask = "path to your requirements.txt file"
+        type = "path"
         optional = true
-        help = "Check it if you want my_FastAPI_app to install your custom python dependencies."
+        help = "Relative path to your requirement file, including it's name"
