@@ -5,8 +5,7 @@ from fastapi import FastAPI
 
 UVICORN_ROOT_PATH = os.environ.get('UVICORN_ROOT_PATH')
 
-#app = FastAPI(root_path=UVICORN_ROOT_PATH)
-app = FastAPI()
+app = FastAPI(root_path=UVICORN_ROOT_PATH)
 
 @app.get("/")
 def read_root():
