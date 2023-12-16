@@ -18,7 +18,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 Cette application installe une application FastAPI "Hello world" prête à être personnalisée par votre propre code.
 
-**Version incluse :** 1.0~ynh1
+**Version incluse :** 1.0~ynh2
 
 ## Captures d’écran
 
