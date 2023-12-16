@@ -19,8 +19,11 @@ code = "https://github.com/leonarf/FastAPI_ynh"
 yunohost = ">= 11.2.5"
 architectures = "all"
 multi_instance = true
+
 ldap = "not_relevant"
+
 sso = "not_relevant"
+
 disk = "50M"
 ram.build = "350M"
 ram.runtime = "50M"
@@ -47,24 +50,16 @@ ram.runtime = "50M"
     allow_sftp = true
     allow_ssh = true
     home = "/home/yunohost.app/__APP__"
-    # This will provision/deprovision a unix system user
 
     [resources.install_dir]
 
     [resources.data_dir]
-    # This will create/remove the data dir as /home/yunohost.app/$app
-    # and store the corresponding setting $data_dir
     dir = "/home/yunohost.app/__APP__"
 
     [resources.permissions]
-    # This will configure SSOwat permission for $domain/$path/
-    # The initial allowed group of user is configured via the init_main_permission question (public=visitors, private=all_users)
     main.url = "/"
 
     [resources.ports]
-    # This will pick a random port for reverse-proxying and store it as the $port setting
 
     [resources.apt]
-    # This will automatically install/uninstall the following apt packages
-    # and implicitly define the $phpversion setting as 8.0 (if phpX.Y-foobar dependencies are listed)
     packages = "python3-dev, python3-pip, python3-venv"
