@@ -42,7 +42,7 @@ ram.runtime = "50M"
 
     [install.password]
     help.en = "Password that you will need to upload your code on YunoHost"
-    help.fr = "Le mot de passe que vous utiliserez pour téléverser votre code sur Yunohost"
+    help.fr = "Le mot de passe que vous utiliserez pour téléverser votre code sur YunoHost"
     type = "password"
 
 [resources]
