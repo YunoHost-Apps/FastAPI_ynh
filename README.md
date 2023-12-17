@@ -18,7 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 This Application install a FastAPI application "Hello Word" ready to be customized by your own code
 
-**Shipped version:** 1.0~ynh1
+**Shipped version:** 1.0~ynh2
 
 ## Screenshots
 
