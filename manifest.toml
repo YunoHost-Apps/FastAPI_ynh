@@ -3,7 +3,7 @@
 packaging_format = 2
 
 id = "fastapi"
-name = "my_FastAPI_app"
+name = "FastAPI"
 description.en = "Custom Web app to run a FastAPI program written in Python"
 description.fr = "Une application web personnalisée pour faire tourner une application FastAPI écrite en Python"
 
