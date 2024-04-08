@@ -12,6 +12,11 @@ Environment="UVICORN_ROOT_PATH=__PATH__"
 
 ExecStart=__INSTALL_DIR__/venv/bin/gunicorn --config __INSTALL_DIR__/gunicorn.conf.py FastAPIAppFolder:app --worker-class uvicorn.workers.UvicornWorker
 
+Restart=on-failure
+RestartSec=1s
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=__APP__-server
