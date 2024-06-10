@@ -10,7 +10,7 @@ if UVICORN_ROOT_PATH and len(UVICORN_ROOT_PATH) > 0 and UVICORN_ROOT_PATH != '/'
 else:
     app = FastAPI()
 
-@app.get("/")
+@app.get("/example")
 def read_root():
     return {"Hello": "World"}
 
