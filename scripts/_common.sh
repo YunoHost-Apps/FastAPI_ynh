@@ -34,17 +34,16 @@ log_file="${log_path}/${app}.log"
 
 myynh_setup_python_venv() {
     # Always recreate everything fresh with current python version
-    ynh_secure_remove "$install_dir/venv"
+    ynh_safe_rm "$install_dir/venv"
 
-    chown -R "$app:$app" "$install_dir"
-
+    #REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R "$app:$app" "$install_dir"
     # Skip pip because of: https://github.com/YunoHost/issues/issues/1960
-    ynh_exec_as "$app" python3 -m venv --without-pip "$install_dir/venv"
+    ynh_exec_as_app python3 -m venv --without-pip "$install_dir/venv"
 
-    ynh_exec_as $app $install_dir/venv/bin/python3 -m ensurepip
+    ynh_exec_as_app $install_dir/venv/bin/python3 -m ensurepip
     # using --no-cache-dir option because user doesn't have permission to write on cache directory (don't know if it's on purpose or not)
-    ynh_exec_as $app $install_dir/venv/bin/pip3 install --no-cache-dir --upgrade wheel pip setuptools
-    ynh_exec_as $app $install_dir/venv/bin/pip3 install --no-cache-dir -r "$install_dir/requirements.txt"
+    ynh_exec_as_app $install_dir/venv/bin/pip3 install --no-cache-dir --upgrade wheel pip setuptools
+    ynh_exec_as_app $install_dir/venv/bin/pip3 install --no-cache-dir -r "$install_dir/requirements.txt"
 }
 
 myynh_setup_log_file() {
@@ -68,7 +67,7 @@ myynh_fix_file_permissions() {
         chmod -c o-rwx "$data_dir"
 
         # /var/www/$app/
-        chown -c -R "$app:" "$install_dir"
-        chmod -c o-rwx "$install_dir"
+        #REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -c -R "$app:" "$install_dir"
+        #REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -c o-rwx "$install_dir"
     )
 }
