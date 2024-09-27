@@ -18,7 +18,7 @@ It shall NOT be edited by hand.
 
 This Application install a FastAPI application "Hello Word" ready to be customized by your own code
 
-**Shipped version:** 1.0~ynh2
+**Shipped version:** 1.0~ynh3
 
 ## Screenshots
 

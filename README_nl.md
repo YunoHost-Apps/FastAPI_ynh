@@ -18,7 +18,7 @@ Hij mag NIET handmatig aangepast worden.
 
 This Application install a FastAPI application "Hello Word" ready to be customized by your own code
 
-**Geleverde versie:** 1.0~ynh2
+**Geleverde versie:** 1.0~ynh3
 
 ## Schermafdrukken
 

@@ -18,7 +18,7 @@ Ini TIDAK boleh diedit dengan tangan.
 
 This Application install a FastAPI application "Hello Word" ready to be customized by your own code
 
-**Versi terkirim:** 1.0~ynh2
+**Versi terkirim:** 1.0~ynh3
 
 ## Tangkapan Layar
 

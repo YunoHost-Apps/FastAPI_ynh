@@ -18,7 +18,7 @@ Il NE doit PAS être modifié à la main.
 
 Cette application installe une application FastAPI "Hello world" prête à être personnalisée par votre propre code.
 
-**Version incluse :** 1.0~ynh2
+**Version incluse :** 1.0~ynh3
 
 ## Captures d’écran
 

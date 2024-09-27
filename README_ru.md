@@ -18,7 +18,7 @@
 
 This Application install a FastAPI application "Hello Word" ready to be customized by your own code
 
-**Поставляемая версия:** 1.0~ynh2
+**Поставляемая версия:** 1.0~ynh3
 
 ## Снимки экрана
 
