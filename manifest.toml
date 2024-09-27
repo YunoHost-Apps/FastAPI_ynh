@@ -56,7 +56,6 @@ ram.runtime = "50M"
     group = "www-data:r-x"
 
     [resources.data_dir]
-    dir = "/home/yunohost.app/__APP__"
 
     [resources.permissions]
     main.url = "/"
