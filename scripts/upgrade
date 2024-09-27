@@ -45,6 +45,7 @@ ynh_config_add_logrotate "$log_file"
 # SECURE FILES AND DIRECTORIES
 #=================================================
 ynh_script_progression "Set file permissions..."
+
 myynh_fix_file_permissions
 
 #=================================================

@@ -43,6 +43,7 @@ ynh_script_progression "Restoring the systemd $app configuration..."
 
 ynh_restore "/etc/systemd/system/$app.service"
 systemctl enable $app.service --quiet
+
 ynh_systemctl --service=$app --action="start" --log_path="$log_file"
 
 #=================================================
