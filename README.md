@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # FastAPI for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/fastapi.svg)](https://dash.yunohost.org/appci/app/fastapi) ![Working status](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
+[![Integration level](https://dash.yunohost.org/integration/fastapi.svg)](https://ci-apps.yunohost.org/ci/apps/fastapi/) ![Working status](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
 
 [![Install FastAPI with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=fastapi)
 

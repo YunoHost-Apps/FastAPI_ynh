@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # FastAPI YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/fastapi.svg)](https://dash.yunohost.org/appci/app/fastapi) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/fastapi.svg)](https://ci-apps.yunohost.org/ci/apps/fastapi/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
 
 [![Instalatu FastAPI YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=fastapi)
 

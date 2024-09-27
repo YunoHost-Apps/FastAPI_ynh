@@ -5,7 +5,7 @@ No se debe editar a mano.
 
 # FastAPI para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/fastapi.svg)](https://dash.yunohost.org/appci/app/fastapi) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/fastapi.svg)](https://ci-apps.yunohost.org/ci/apps/fastapi/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/fastapi.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/fastapi.maintain.svg)
 
 [![Instalar FastAPI con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=fastapi)
 
@@ -32,7 +32,7 @@ This Application install a FastAPI application "Hello Word" ready to be customiz
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/fastapi_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/fastapi_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
