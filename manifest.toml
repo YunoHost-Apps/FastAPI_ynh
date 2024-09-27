@@ -7,7 +7,7 @@ name = "FastAPI"
 description.en = "Custom Web app to run a FastAPI program written in Python"
 description.fr = "Une application web personnalisée pour faire tourner une application FastAPI écrite en Python"
 
-version = "1.0~ynh2"
+version = "1.0~ynh3"
 
 maintainers = ["leonarf"]
 
@@ -16,7 +16,8 @@ license = "GPL-3.0-or-later"
 code = "https://github.com/leonarf/FastAPI_ynh"
 
 [integration]
-yunohost = ">= 11.2.5"
+yunohost = ">= 11.2.30"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
 
@@ -52,9 +53,9 @@ ram.runtime = "50M"
     home = "/home/yunohost.app/__APP__"
 
     [resources.install_dir]
+    group = "www-data:r-x"
 
     [resources.data_dir]
-    dir = "/home/yunohost.app/__APP__"
 
     [resources.permissions]
     main.url = "/"

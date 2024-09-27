@@ -1,86 +1,78 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
 # SETTINGS
 #=================================================
-ynh_script_progression --message="Storing installation settings..."
+ynh_script_progression "Storing installation settings..."
 
 # Logging:
 log_file="/var/log/$app/$app.log"
-ynh_app_setting_set --app=$app --key=log_file --value="$log_file"
+ynh_app_setting_set --key=log_file --value="$log_file"
 
 #=================================================
 # SETUP LOG FILE
 #=================================================
-ynh_script_progression --message="Setup logging..."
+ynh_script_progression "Setup logging..."
 
 myynh_setup_log_file
 
 # Use logrotate to manage application logfile(s)
-ynh_use_logrotate --logfile="$log_file" --specific_user=$app
+ynh_config_add_logrotate "$log_file"
 
 #=================================================
 # PYTHON VIRTUALENV
 #=================================================
-ynh_script_progression --message="Create and setup Python virtualenv..." --weight=45
+ynh_script_progression "Create and setup Python virtualenv..."
 
-ynh_add_config --template="requirements.txt" --destination="$install_dir/requirements.txt"
+ynh_config_add --template="requirements.txt" --destination="$install_dir/requirements.txt"
 
 myynh_setup_python_venv
 
 #=================================================
 # copy config files
 # ================================================
-ynh_script_progression --message="Create $app configuration files..."
+ynh_script_progression "Create $app configuration files..."
 
-ynh_add_config --template="gunicorn.conf.py" --destination="$install_dir/gunicorn.conf.py"
+ynh_config_add --template="gunicorn.conf.py" --destination="$install_dir/gunicorn.conf.py"
 
 mkdir -p "$data_dir/FastAPIAppFolder"
-ynh_add_config --template="__init__.py" --destination="$data_dir/FastAPIAppFolder/__init__.py"
-ynh_app_setting_set --app=$app --key=main_folder --value="FastAPIAppFolder"
-ynh_app_setting_set --app=$app --key=requirements_path --value=""
+ynh_config_add --template="__init__.py" --destination="$data_dir/FastAPIAppFolder/__init__.py"
+ynh_app_setting_set --key=main_folder --value="FastAPIAppFolder"
+ynh_app_setting_set --key=requirements_path --value=""
 
 # Add the password to this user
 chpasswd <<< "${app}:${password}"
 
 #=================================================
-# GENERIC FINALIZATION
-#=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
-ynh_script_progression --message="Set file permissions..."
+ynh_script_progression "Set file permissions..."
 
 myynh_fix_file_permissions
 
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring NGINX web server..."
+ynh_script_progression "Configuring NGINX web server..."
 
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_systemd_config
+ynh_config_add_systemd
 
 yunohost service add $app --description="Gunicorn running a FastAPI app" --log="/var/log/$app/$app.log"
 
 #=================================================
 # Start the app server via systemd
 #=================================================
-ynh_script_progression --message="Starting systemd service '$app'..." --weight=5
+ynh_script_progression "Starting systemd service '$app'..."
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="$log_file"
+ynh_systemctl --service=$app --action="start" --log_path="$log_file"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression "Installation of $app completed"
