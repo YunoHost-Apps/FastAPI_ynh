@@ -9,4 +9,4 @@ name.fr = "Information à propos de votre propre code"
         ask = "path to your requirements.txt file"
         type = "path"
         optional = true
-        help = "Relative path to your requirement file, including it's name"
+        help = "Relative path to your requirement file, including it's name. Base path is: /home/yunohost.app/fastapi/"
